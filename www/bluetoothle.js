@@ -49,7 +49,10 @@ var bluetoothle = {
   },
   getAdapterInfo: function(successCallback) {
     cordova.exec(successCallback, successCallback, bluetoothleName, "getAdapterInfo", []);
-  },  
+  }, 
+  getBondedDevices: function(successCallback) {
+    cordova.exec(successCallback, successCallback, bluetoothleName, "getBondedDevices", []);
+  },
   startScan: function(successCallback, errorCallback, params) {
     cordova.exec(successCallback, errorCallback, bluetoothleName, "startScan", [params]);
   },

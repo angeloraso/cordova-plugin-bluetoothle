@@ -312,6 +312,8 @@ public class BluetoothLePlugin extends CordovaPlugin {
       enableAction(callbackContext);
     } else if ("getAdapterInfo".equals(action)) {
       getAdapterInfoAction(callbackContext);
+    } else if ("getBondedDevices".equals(action)) {
+      getBondedDevicesAction(callbackContext);
     } else if ("disable".equals(action)) {
       disableAction(callbackContext);
     } else if ("startScan".equals(action)) {
@@ -1055,6 +1057,21 @@ public class BluetoothLePlugin extends CordovaPlugin {
       return;
     }
 
+  }
+
+  private void getBondedDevicesAction(CallbackContext callbackContext) {
+    JSONArray returnArray = new JSONArray();
+    Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
+    for (BluetoothDevice device : devices) {
+      JSONObject returnObj = new JSONObject();
+
+      addDevice(returnObj, device);
+
+      returnArray.put(returnObj);
+    }
+    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, returnArray);
+    pluginResult.setKeepCallback(true);
+    callbackContext.sendPluginResult(pluginResult);
   }
 
   private void enableAction(CallbackContext callbackContext) {

@@ -706,6 +706,7 @@ var androidActions = [
   'initialize',
   'enable',
   'getAdapterInfo',
+  'getBondedDevices',
   'disable',
   'startScan',
   'stopScan',
