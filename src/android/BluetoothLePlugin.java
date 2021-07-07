@@ -115,6 +115,7 @@ public class BluetoothLePlugin extends CordovaPlugin {
   private final String keyValue = "value";
   private final String keyType = "type";
   private final String keyIsInitialized = "isInitialized";
+  private final String keyIsHeadsetConnected = "isHeadsetConnected";
   private final String keyIsEnabled = "isEnabled";
   private final String keyIsScanning = "isScanning";
   private final String keyIsBonded = "isBonded";
@@ -375,6 +376,8 @@ public class BluetoothLePlugin extends CordovaPlugin {
       rssiAction(args, callbackContext);
     } else if ("isInitialized".equals(action)) {
       isInitializedAction(callbackContext);
+    } else if ("isHeadsetConnected".equals(action)) {
+      isHeadsetConnectedAction(callbackContext);
     } else if ("isEnabled".equals(action)) {
       isEnabledAction(callbackContext);
     } else if ("isScanning".equals(action)) {
@@ -2490,6 +2493,16 @@ public class BluetoothLePlugin extends CordovaPlugin {
 
     JSONObject returnObj = new JSONObject();
     addProperty(returnObj, keyIsInitialized, result);
+
+    callbackContext.success(returnObj);
+  }
+
+  private void isHeadsetConnectedAction(CallbackContext callbackContext) {
+    boolean result = bluetoothAdapter != null && bluetoothAdapter.isEnabled()
+      && bluetoothAdapter.getProfileConnectionState(BluetoothHeadset.HEADSET) == BluetoothHeadset.STATE_CONNECTED;
+
+    JSONObject returnObj = new JSONObject();
+    addProperty(returnObj, keyIsHeadsetConnected, result);
 
     callbackContext.success(returnObj);
   }

@@ -125,6 +125,9 @@ var bluetoothle = {
   isInitialized: function(successCallback) {
     cordova.exec(successCallback, successCallback, bluetoothleName, "isInitialized", []);
   },
+  isHeadsetConnected: function(successCallback) {
+    cordova.exec(successCallback, successCallback, bluetoothleName, "isHeadsetConnected", []);
+  },
   isEnabled: function(successCallback) {
     cordova.exec(successCallback, successCallback, bluetoothleName, "isEnabled", []);
   },

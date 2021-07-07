@@ -337,6 +337,13 @@ declare namespace BluetoothlePlugin {
             success: (result: { isInitialized: boolean }) => void): void;
 
         /**
+         * Determine whether the adapter is initialized. No error callback. Returns true or false
+         * @param success  The success callback that is passed with initizialization status
+         */
+        isHeadsetConnected(
+            success: (result: { isHeadsetConnected: boolean }) => void): void;
+
+        /**
          * Determine whether the adapter is enabled. No error callback
          * @param success The success callback that is passed with enabled status
          */
